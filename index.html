@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>«Үш жүз» қазақ социалистік партиясы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3e6c8;
+    --paper-dark: #e4cf9f;
+    --ink: #3b2415;
+    --ink-soft: #6b4a2e;
+    --red: #8b2a1e;
+    --gold: #b8862b;
+    --shadow: rgba(59, 36, 21, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
+    font-size: 1.35rem;
+    color: var(--ink);
+    line-height: 1.5;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.35), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(120,70,30,0.25), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(120,80,40,0.03) 0 2px, transparent 2px 6px),
+      linear-gradient(135deg, var(--paper), var(--paper-dark));
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ескі қағаз текстурасы */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(90,60,30,0.08) 1px, transparent 1px);
+    background-size: 4px 4px;
+    z-index: 0;
+  }
+
+  /* Қалқып жүрген шаң бөлшектері */
+  .dust span {
+    position: fixed;
+    width: 4px; height: 4px;
+    background: rgba(90,60,30,0.35);
+    border-radius: 50%;
+    animation: drift linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @keyframes drift {
+    from { transform: translateY(110vh) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    to { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 1.2rem 4rem;
+  }
+
+  /* ===== HERO ===== */
+  header.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    perspective: 1200px;
+  }
+
+  .ring {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 18s linear infinite;
+    margin-bottom: 2rem;
+  }
+  .ring .panel {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 150px; height: 190px;
+    margin: -95px 0 0 -75px;
+    background: linear-gradient(170deg, #f7ecd0, #d9bd84);
+    border: 2px solid var(--ink-soft);
+    border-radius: 6px 6px 40% 40%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--red);
+    box-shadow: inset 0 0 25px rgba(90,50,20,0.3);
+    backface-visibility: hidden;
+  }
+  .ring .panel:nth-child(1) { transform: rotateY(0deg) translateZ(130px); }
+  .ring .panel:nth-child(2) { transform: rotateY(120deg) translateZ(130px); }
+  .ring .panel:nth-child(3) { transform: rotateY(240deg) translateZ(130px); }
+  @keyframes spin {
+    from { transform: rotateY(0deg) rotateX(-8deg); }
+    to   { transform: rotateY(360deg) rotateX(-8deg); }
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    color: var(--red);
+    line-height: 1.15;
+    text-shadow: 2px 2px 0 rgba(255,255,255,0.4);
+    animation: rise 1.2s ease both;
+  }
+  .lead {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    max-width: 600px;
+    animation: rise 1.2s 0.3s ease both;
+  }
+  .scroll-hint {
+    margin-top: 2.5rem;
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(30px) rotateX(20deg); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ===== БӨЛІМДЕР ===== */
+  section.card {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2.2rem 2rem 2rem;
+    background: linear-gradient(160deg, rgba(255,250,235,0.95), rgba(240,222,180,0.95));
+    border: 2px solid var(--ink-soft);
+    border-radius: 4px;
+    box-shadow:
+      0 10px 25px var(--shadow),
+      inset 0 0 40px rgba(120,80,40,0.15);
+    transform-style: preserve-3d;
+    transform: perspective(1200px) rotateX(12deg) translateY(60px);
+    opacity: 0;
+    transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.9s ease;
+  }
+  section.card.visible {
+    transform: perspective(1200px) rotateX(0) translateY(0);
+    opacity: 1;
+  }
+  section.card:hover {
+    transform: perspective(1200px) rotateY(-2deg) rotateX(2deg) translateY(-4px);
+  }
+  section.card::before, section.card::after {
+    content: "";
+    position: absolute;
+    width: 26px; height: 26px;
+    border: 2px solid var(--gold);
+  }
+  section.card::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  section.card::after  { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+  h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    color: var(--red);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  h2::before {
+    content: "❖";
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+  h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 1.3rem 0 0.4rem;
+    color: var(--ink);
+    text-decoration: underline wavy var(--gold);
+    text-underline-offset: 6px;
+  }
+  p { margin-bottom: 0.9rem; font-size: 1.45rem; }
+
+  .dropcap::first-letter {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    float: left;
+    font-size: 4.2rem;
+    line-height: 0.85;
+    padding: 0.4rem 0.6rem 0 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* Жазбалар */
+  .note {
+    background: rgba(184,134,43,0.12);
+    border-left: 4px solid var(--red);
+    padding: 0.8rem 1rem;
+    margin: 1.2rem 0;
+    transform: rotate(-0.4deg);
+    font-size: 1.4rem;
+  }
+
+  /* Тізімдер */
+  ul.ornate { list-style: none; margin: 0.5rem 0 1rem; }
+  ul.ornate li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.55rem;
+    font-size: 1.45rem;
+  }
+  ul.ornate li::before {
+    content: "✦";
+    position: absolute; left: 0; top: 0;
+    color: var(--gold);
+  }
+
+  /* 3D карточкалар (бағдарлама) */
+  .cards3d {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .flip {
+    height: 170px;
+    perspective: 900px;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  .flip:hover .flip-inner, .flip.active .flip-inner { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    border: 2px solid var(--ink-soft);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    background: linear-gradient(160deg, #fbf3dc, #e6cf9b);
+    box-shadow: 4px 6px 12px var(--shadow);
+  }
+  .face.back {
+    transform: rotateY(180deg);
+    background: linear-gradient(160deg, #6e2418, #8b2a1e);
+    color: #f7ecd0;
+  }
+  .face h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.4rem; color: var(--red); }
+  .face.back p { font-size: 1.25rem; margin: 0; }
+
+  /* Салыстыру кестесі */
+  .reasons { counter-reset: r; }
+  .reasons li {
+    counter-increment: r;
+    list-style: none;
+    position: relative;
+    padding-left: 2.6rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.45rem;
+  }
+  .reasons li::before {
+    content: counter(r);
+    position: absolute; left: 0; top: 0;
+    width: 1.9rem; height: 1.9rem;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--paper);
+    text-align: center;
+    line-height: 1.9rem;
+    font-weight: 700;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  }
+
+  /* Хронология */
+  .timeline { position: relative; padding-left: 1.6rem; margin-top: 1rem; }
+  .timeline::before {
+    content: ""; position: absolute; left: 6px; top: 0; bottom: 0;
+    width: 3px; background: repeating-linear-gradient(var(--ink-soft) 0 8px, transparent 8px 14px);
+  }
+  .tl-item { position: relative; margin-bottom: 1.1rem; font-size: 1.45rem; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -1.6rem; top: 0.5rem;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--ink);
+  }
+  .tl-item b { color: var(--red); font-size: 1.55rem; }
+
+  /* Сұрақ-жауап аккордеон */
+  details {
+    background: rgba(255,255,255,0.4);
+    border: 1px dashed var(--ink-soft);
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    padding: 0.7rem 1rem;
+    transition: background 0.3s;
+  }
+  details[open] { background: rgba(184,134,43,0.15); }
+  summary {
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--red);
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: " ▾"; color: var(--gold); }
+  details[open] summary::after { content: " ▴"; }
+  details p { margin-top: 0.6rem; }
+
+  /* Сөздік */
+  .glossary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .term {
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px dotted var(--ink-soft);
+    font-size: 1.4rem;
+  }
+  .term b { color: var(--red); }
+
+  /* Соңы */
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+  }
+  footer .seal {
+    display: inline-block;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    border: 3px double var(--red);
+    line-height: 84px;
+    color: var(--red);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    transform: rotate(-12deg);
+    box-shadow: 0 0 0 4px rgba(184,134,43,0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    section.card { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 600px) {
+    section.card { padding: 1.5rem 1.2rem; }
+    .ring { width: 180px; height: 180px; }
+    .ring .panel { width: 120px; height: 160px; margin: -80px 0 0 -60px; font-size: 1.9rem; }
+    .ring .panel:nth-child(n) { transform-origin: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="dust" aria-hidden="true">
+  <span style="left:10%; animation-duration:14s; animation-delay:0s"></span>
+  <span style="left:30%; animation-duration:18s; animation-delay:4s"></span>
+  <span style="left:55%; animation-duration:12s; animation-delay:2s"></span>
+  <span style="left:75%; animation-duration:20s; animation-delay:7s"></span>
+  <span style="left:90%; animation-duration:16s; animation-delay:1s"></span>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="ring" aria-hidden="true">
+      <div class="panel">Үш</div>
+      <div class="panel">Жүз</div>
+      <div class="panel">1917</div>
+    </div>
+    <h1>«Үш жүз» қазақ<br>социалистік партиясы</h1>
+    <p class="lead">1917 жылы Қазақстанда құрылған саяси ұйым туралы қысқаша тарих.</p>
+    <div class="scroll-hint">Төмен қарай жылжыңыз ↓</div>
+  </header>
+
+  <section class="card">
+    <h2>Құрылуы</h2>
+    <p class="dropcap">1917 жылы қараша айында Қазақстанда тағы да бір саяси ұйым — «Үш жүз» қазақ социалистік партиясы құрылды.</p>
+    <p>Партияның негізін салушы — <b>Мұқан Әйтпенов</b>, көшбасшыларының бірі — <b>Шаймерден Әлжанов</b>.</p>
+    <p>Партияның баспасөз органы — «Үш жүз» газеті. Ол 1917 жылдың желтоқсан айынан бастап Петропавл қаласында шыға бастады.</p>
+    <div class="note">«Үш жүз» партиясы «Алаш» партиясына оппозиция позициясын құраған социалистік партия болды.</div>
+  </section>
+
+  <section class="card">
+    <h2>Кімдер топтасты?</h2>
+    <p>Бұл партияның төңірегіне кедейлер мен Петропавл, Семей жұмысшылары және т.б. топтасты.</p>
+    <p>Сонымен қатар, «Алаш» партиясы мен «Үш жүз» партиясының әлеуметтік құрамын салыстыра отырып, Алашорданы басқарғандардың көпшілігі патша гимназияларында тәрбие алған, ал «Үш жүз» төңірегіндегілер қолөнерші, бақташы, омбылық тұрғындар сияқты еңбек адамдары болды.</p>
+    <p>Бұл саяси күштердің арасындағы айырмашылықты көрсететін маңызды дерек.</p>
+  </section>
+
+  <section class="card">
+    <h2>Бағдарламасы</h2>
+    <p>«Үш жүз» партиясының айқын, толық бағдарламасы болған жоқ. Мерзімді басылымы — партия атауымен аттас газетте тек бағдарламалық тұжырымдар жарияланды.</p>
+    <p>Негізгі мақсаты — түркі-татар халықтарын біріктіру және Ресей Республикасының федеративтік құрылымын талап ету болды. Ұшжүздіктер ұлттық мәселенің шешілуін түркі-татар федерациясын құрудан, мұсылман халықтарын түркілік идея негізінде біріктіруден көрді.</p>
+    <p>Қазақ социалистік партиясының бағдарламалық тезистері айқын емес еді, бірақ еңбекшілердің талаптарын бейнелеген бірқатар тармақтары болды:</p>
+
+    <div class="cards3d">
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="face"><h4>Бейбітшілік</h4><span>Соғыс</span></div>
+          <div class="face back"><p>Империалистік соғысты дереу тоқтату, аннексиясыз және контрибуциясыз бітім жасауды жақтады.</p></div>
+        </div>
+      </div>
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="face"><h4>Автономия</h4><span>Түркі-татар</span></div>
+          <div class="face back"><p>Ресейдің түркітілдес халықтарының бірыңғай автономиясын құруға ұсынды.</p></div>
+        </div>
+      </div>
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="face"><h4>Жер мәселесі</h4><span>Кедейлер</span></div>
+          <div class="face back"><p>Қазақ кедейлеріне жер беруді талап етіп, отырықшы өмір салтына көшу қажеттігін айтты.</p></div>
+        </div>
+      </div>
+      <div class="flip" tabindex="0">
+        <div class="flip-inner">
+          <div class="face"><h4>Білім</h4><span>Мектептер</span></div>
+          <div class="face back"><p>Мектептерді ашуды, халық арасында білімнің таралуын қолдады, жетімдерге көмек көрсетуді міндет етті.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Сот және құқық</h3>
+    <p>Сот құрылысы мен сот ісін жүргізу мәселесінде «Үш жүз» партиясы Құранның қатаң тармақтарын алып тастап, әдеттегі құқық пен шариғат негізінде заңдар жинағын жасауды ұсынды. Ұшжүздіктер өз алдына қазақ ауылдарында земство мекемелерін құру міндетін қойды.</p>
+  </section>
+
+  <section class="card">
+    <h2>«Алаш» пен «Үш жүз» арасындағы тартыс</h2>
+    <p>«Үш жүз» партиясының бағдарламасы мен басшыларының әртүрлі мәселелер бойынша сөйлеген сөздерінде ұсақ буржуазиялық революцияшылдарға тән саяси шикілік, көмескілік көрініс берді.</p>
+    <p>«Үш жүз» пен «Алаш» тек тексерілетін тәсілдерімен ғана емес, Қазақстандағы саяси күштер екіге бөлініп, Кеңестер билігі мен ықпалының күшеюіне байланысты «Үш жүз» большевиктерге бұрынғыдан да жақындай түсті және «Алаш» партиясына қарсы шықты.</p>
+
+    <h3>Неліктен «Алашқа» қарсы шықты?</h3>
+    <p>1918 жылдың басынан «Алаш» автономиясына қарсы шыға отырып, ұшжүздіктер автономия құру жолында мынадай кедергілерді бөліп көрсетті:</p>
+    <ol class="reasons">
+      <li>Қазақстанның әлеуметтік-экономикалық жағынан арта қалуы;</li>
+      <li>Қазақтардың үлкен аумақтағы (Астраханнан Қытайға дейін) бытыраңқылығы;</li>
+      <li>Өлкенің көпұлттылығы;</li>
+      <li>Қазақтар тек қазақ халқының негізінде мемлекеттілікті құра алмайды, өйткені басқа халықтар бұған қарсылық білдіреді деп есептеді.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Большевиктермен одақ</h2>
+    <p>1918 жылдың 18 қаңтарынан бастап «Үш жүз» большевиктерді қолдай бастады. Олар Кеңес өкіметінің құрылуына жергілікті жерлерде қатысты.</p>
+    <div class="note">Себебі: Алаш автономиясына қарсы болған «Үш жүз» өз ойын Кеңес өкіметімен жақындастыруда көрді.</div>
+
+    <h3>Жергілікті ұйымдар</h3>
+    <p>«Үш жүз» партиясының Орталық комитеті Омскіде құрылды. Оның бөлімшелері Петропавл, Семей, Ақмола қалаларында жұмыс істеді.</p>
+    <p>1917 жылы қараша айында Мұқан Әйтпенов газетке «Кадет Әлихан Бөкейхановтың «Алаш» партиясына қанағаттанбаған қазақтар өз алдына «Үш жүз» социалистік партиясын ашты» деген телеграмма жолдады.</p>
+  </section>
+
+  <section class="card">
+    <h2>Ыдырауы</h2>
+    <div class="timeline">
+      <div class="tl-item"><b>1917 қараша</b> — партия құрылды.</div>
+      <div class="tl-item"><b>1917 желтоқсан</b> — «Үш жүз» газеті Петропавлда шыға бастады.</div>
+      <div class="tl-item"><b>1918 қаңтар</b> — большевиктерді қолдай бастады.</div>
+      <div class="tl-item"><b>1918 маусым</b> — көшбасшысы К.Төгісов қаза тапты, кейін партия тарап кетті.</div>
+    </div>
+    <p>Партия төрағасы К.Төгісов «Алаш» партиясына қарсы шығып, Кеңес өкіметімен келісім жүргізді. Нәтижесінде бұл алашордалықтардың Кеңес өкіметімен келісіміне ықпал етті.</p>
+  </section>
+
+  <section class="card">
+    <h2>Сұрақтарға жауап</h2>
+
+    <details>
+      <summary>1. «Үш жүз» партиясы қашан құрылды және оның басшылары кімдер болды?</summary>
+      <p>Партия 1917 жылы қараша айында құрылды. Негізін салушы — Мұқан Әйтпенов, көшбасшыларының бірі — Шаймерден Әлжанов.</p>
+    </details>
+
+    <details>
+      <summary>2. «Үш жүз» бен «Алаш» партияларының арасындағы қатынас қандай болды?</summary>
+      <p>«Үш жүз» «Алашқа» оппозиция позициясын ұстады. Ол Алаш автономиясына қарсы шығып, 1918 жылдың басынан большевиктерді қолдады.</p>
+    </details>
+
+    <details>
+      <summary>3. «Үш жүз» партиясының бағдарламасы туралы не білесіңдер?</summary>
+      <p>Бағдарламасы айқын емес еді. Негізгі мақсаты — түркі-татар халықтарын біріктіру, Ресей Республикасының федеративтік құрылымын талап ету, империалистік соғысты тоқтату және жер, білім, сот мәселелеріне назар аудару.</p>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>Сөздік</h2>
+    <div class="glossary">
+      <div class="term"><b>Өкімет</b> — мемлекетті басқарушы жалпылама билік.</div>
+      <div class="term"><b>Үкімет</b> — мемлекеттік биліктің жоғары атқарушы органы.</div>
+      <div class="term"><b>Национализация</b> (мемлекеттендіру) — жекеменшік кәсіпорындарды мемлекеттік меншікке айналдыру.</div>
+      <div class="term"><b>ХКК</b> (Халық Комиссарлары Кеңесі) — кеңестік үкімет атауы.</div>
+      <div class="term"><b>Социалистік мемлекет</b> (республика, ел) — Конституция бойынша социализм ұстанатын егемен мемлекет.</div>
+      <div class="term"><b>Солшыл эсерлер</b> — 1917–1923 жылдардағы Ресейдегі саяси партия. Бірінші дүниежүзілік соғыс кезінде эсерлердің сол қанат ретінде пайда болды.</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="seal">Үш<br>жүз</div>
+    <p>Тарих — өткенді білудің айнасы.</p>
+  </footer>
+
+</div>
+
+<script>
+  // Бөлімдер scroll кезінде 3D-мен пайда болады
+  const cards = document.querySelectorAll('section.card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(c => io.observe(c));
+
+  // Сенсорлы құрылғыларда карточканы басу арқылы аудару
+  document.querySelectorAll('.flip').forEach(el => {
+    el.addEventListener('click', () => el.classList.toggle('active'));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.classList.toggle('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>
